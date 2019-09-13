@@ -58,6 +58,18 @@ VALUES
 '7' DAY
 );
 
+CREATE TABLE users
+(
+	id SERIAL NOT NULL PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL,
+	hashed_password CHAR(60) NOT NULL,
+	created DATE NOT NULL,
+	active BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+ALTER TABLE users ADD CONSTRAINT users_uc_email UNIQUE (email);
+
 CREATE ROLE snippetbox
 with PASSWORD 'Password' LOGIN;
 
