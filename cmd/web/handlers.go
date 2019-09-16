@@ -48,7 +48,6 @@ func (app *application) showSnippet(w http.ResponseWriter, r *http.Request) {
 
 func (app *application) createSnippetForm(w http.ResponseWriter, r *http.Request) {
 	app.render(w, r, "create.page.tmpl", &templateData{
-		// Pass a new empty forms.Form object to the template.
 		Form: forms.New(nil),
 	})
 }
@@ -117,11 +116,8 @@ func (app *application) signupUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Otherwise add a confirmation flash message to the session confirming that
-	// their signup worked and asking them to log in.
 	app.session.Put(r, "flash", "Your signup was successful. Please log in.")
 
-	// And redirect the user to the login page.
 	http.Redirect(w, r, "/user/login", http.StatusSeeOther)
 }
 
